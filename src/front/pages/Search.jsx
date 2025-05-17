@@ -53,6 +53,16 @@ export const Search = () => {
         localStorage.removeItem("token"); // Clear authentication token
         navigate("/logout"); // Redirect to logout page
     };
+    const handlefavorites = () => {
+        localStorage.getItem("token");
+        navigate("/Favorites")
+
+        if (isAuthenticated) {
+            navigate("/favorites")
+        } else {
+            navigate("/Signup")
+        }
+    }
 
     return (
         <div className="search-container">
@@ -81,6 +91,9 @@ export const Search = () => {
                 <button onClick={() => handleSearch(search, setDrinks)} className="search-action-button">
                     Search
                 </button>
+            </div>
+            <div className="handlefavorites">
+                <button className="handlefavorites_button" onClick={"/Favorites"}>Click me to Access Fav </button>
             </div>
 
             {/* Display Results */}
@@ -120,7 +133,7 @@ export const Search = () => {
                                     className="btn btn-primary">
                                     Places to drink
                                 </Link>
-                                
+
                                 {/* new “Spots by Location” button */}
                                 <Link
                                     to={`/spot-by-location/${encodeURIComponent(drink.strDrink)}`}
