@@ -28,11 +28,15 @@ const UserInfo = () => {
         localStorage.removeItem("token"); // Clear authentication token
         navigate("/logout"); // Redirect to logout page
     };
-
+    const handleMainPage = () => {
+        localStorage.getItem("token"); // pulls authentication token
+        navigate("/MainPage"); // redirect to main page
+    }
     return (
         <div className="user-info">
             <h3>{user.name}</h3>
             <p>{user.email}</p>
+            <button className="handle-main-page-button" onClick={handleMainPage}>Main Page</button>
             <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>
     );
@@ -91,9 +95,9 @@ export const Favorites = () => {
                                 <img className="cocktail-image" src={drink.drinkImage} alt={drink.drinkName} />
                                 <p className="cocktail-glass"><strong>Glass:</strong> {drink.glass || "N/A"}</p>
                                 <p className="cocktail-category"><strong>Category:</strong> {drink.category || "N/A"}</p>
-                                
+
                                 {/* Remove Favorite Button */}
-                                <button 
+                                <button
                                     className="remove-favorite-button"
                                     onClick={() => removeFavorite(drink.drinkId)}
                                 >
